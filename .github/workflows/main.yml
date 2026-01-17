@@ -1,0 +1,23 @@
+name: Godot Android Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Godot
+        uses: firebelley/godot-setup@v1
+        with:
+          godot-version: 4.3
+      - name: Export APK
+        run: |
+          godot --export "Android" EchoesOfEternity.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: EchoesOfEternity.apk
+          path: EchoesOfEternity.apk

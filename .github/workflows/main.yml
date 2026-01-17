@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Godot
-        uses: firebelley/godot-setup@v1
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Godot 4.3
+        uses: firebelley/godot-setup@v3
         with:
-          godot-version: 4.3
+          godot-version: "4.3"
+
       - name: Export APK
-        run: |
-          godot --export "Android" EchoesOfEternity.apk
+        run: godot --export "Android" EchoesOfEternity.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
